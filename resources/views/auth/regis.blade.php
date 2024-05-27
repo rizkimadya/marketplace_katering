@@ -23,7 +23,7 @@
                             <div style="height: 50vh; overflow:auto;">
                                 <div class="mb-3">
                                     <label for="roles" style="color:#000;">Role</label>
-                                    <select name="roles" id="roles"
+                                    <select required name="roles" id="roles"
                                         style="width: 100%; padding:8px 12px; border:1px solid #a8a8a8; border-radius:4px;">
                                         <option value="" selected disabled>Pilih Role</option>
                                         <option value="Catering">Catering</option>
@@ -33,7 +33,7 @@
                                 <div class="mb-3">
                                     <label for="nama_lengkap" id="label_nama_lengkap" style="color:#000;">Nama
                                         </label>
-                                    <input name="nama_lengkap" type="text" id="nama_lengkap"
+                                    <input required name="nama_lengkap" type="text" id="nama_lengkap"
                                         style="width: 100%; padding:6px 12px; border:1px solid #a8a8a8; border-radius:4px;"
                                         placeholder="Masukkan Nama " />
                                 </div>
@@ -54,19 +54,19 @@
                                 </script>
                                 <div class="mb-3">
                                     <label for="username" style="color:#000;">Username</label>
-                                    <input name="username" type="text" id="username"
+                                    <input required name="username" type="text" id="username"
                                         style="width: 100%; padding:6px 12px; border:1px solid #a8a8a8; border-radius:4px;"
                                         placeholder="Masukkan Username" />
                                 </div>
                                 <div class="mb-3">
                                     <label for="no_wa" style="color:#000;">Nomor Whatsapp</label>
-                                    <input name="no_wa" type="number" id="no_wa"
+                                    <input required name="no_wa" type="number" id="no_wa"
                                         style="width: 100%; padding:6px 12px; border:1px solid #a8a8a8; border-radius:4px;"
                                         placeholder="Masukkan Nomor Whatsapp" />
                                 </div>
                                 <div class="mb-3">
                                     <label for="password" style="color:#000;">Password</label>
-                                    <input name="password" type="password" id="password"
+                                    <input required name="password" type="password" id="password"
                                         style="width: 100%; padding:6px 12px; border:1px solid #a8a8a8; border-radius:4px;"
                                         placeholder="Masukkan Password" />
                                 </div>
@@ -82,7 +82,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <img src="{{ asset('kantor/images/bg_3.jpg') }}" alt="" width="100%">
+                <img src="{{ asset('kantor/images/bg_3.jpg') }}" style="  filter: brightness(0.8); " alt="" width="100%">
             </div>
         </div>
     </section>

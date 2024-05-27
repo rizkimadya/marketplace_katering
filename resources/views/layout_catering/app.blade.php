@@ -89,7 +89,6 @@
         Preloader end
     ********************-->
 
-
     <!--**********************************
         Main wrapper start
     ***********************************-->
@@ -105,6 +104,7 @@
         <div class="content-body">
             <!-- row -->
             <div class="container-fluid">
+                @yield('modal-button')
                 @yield('content')
             </div>
         </div>
@@ -181,6 +181,18 @@
             $('#myTable').DataTable();
         });
     </script>
+
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'), {
+            ckfinder: {
+                uploadUrl: "{{ route('ckeditor.upload', ['_token' => csrf_token()]) }}",
+            },
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
 
 </body>
 

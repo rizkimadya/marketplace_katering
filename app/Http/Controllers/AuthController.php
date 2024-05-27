@@ -33,7 +33,7 @@ class AuthController extends Controller
 
             if ($user->roles == 'Catering') {
                 Alert::success('Berhasil Login', 'Selamat Datang ' . $user->username);
-                return redirect('/dashboard-catering');
+                return redirect('/profil');
             } else {
                 Alert::success('Berhasil Login', 'Selamat Datang ' . $user->username);
                 return redirect('/');
@@ -83,6 +83,8 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
+        Alert::success('Success', 'Berhasil Logout');
+
         return redirect('/login');
     }
 }

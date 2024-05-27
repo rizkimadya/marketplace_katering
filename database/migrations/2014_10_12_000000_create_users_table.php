@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('nama_lengkap');
             $table->string('no_wa');
             $table->string('username');
+            $table->string('alamat')->nullable();
+            $table->string('kontak')->nullable();
+            $table->string('deskripsi')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

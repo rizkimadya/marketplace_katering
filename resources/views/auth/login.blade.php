@@ -7,6 +7,17 @@
                 <div class="p-md-4 p-3">
                     <div class="card shadow border-0 p-md-4">
                         <h4>Halaman Login</h4>
+                        @if (session('success'))
+                            <p class="alert alert-success">{{ session('success') }}</p>
+                        @endif
+                        @if (session('wait'))
+                            <p class="alert alert-danger">{{ session('wait') }}</p>
+                        @endif
+                        @if ($errors->any())
+                            @foreach ($errors->all() as $err)
+                                <p class="alert alert-danger">{{ $err }}</p>
+                            @endforeach
+                        @endif
                         <form action="{{ url('/login') }}" method="POST">
                             @csrf
                             <div class="mb-3">
@@ -32,7 +43,8 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <img src="{{ asset('kantor/images/bg_3.jpg') }}" alt="" width="100%">
+                <img src="{{ asset('kantor/images/bg_3.jpg') }}" style="  filter: brightness(0.8); " alt=""
+                    width="100%">
             </div>
         </div>
     </section>

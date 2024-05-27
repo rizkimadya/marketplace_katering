@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CateringController;
+use App\Http\Controllers\MakananController;
+use App\Http\Controllers\ProfilController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,16 +29,19 @@ Route::post('/login', [AuthController::class, 'postLogin']);
 Route::post('/regis', [AuthController::class, 'postRegis']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
+Route::post('/upload', [CateringController::class, 'upload'])->name('ckeditor.upload');
 
 Route::group(['middleware' => ['auth', 'Roles:Catering']], function () {
-    Route::get('/dashboard-catering', [CateringController::class, 'dashboard']);
+    Route::get('/profil', [ProfilController::class, 'index']);
+    Route::put('/profile', [ProfilController::class, 'update'])->name('user.update');
 
-    // jadwal
-    // Route::get('/admin/jadwal', [JadwalController::class, 'index']);
-    // Route::post('/admin/jadwal', [JadwalController::class, 'store']);
-    // Route::post('/admin/jadwal/{id}', [JadwalController::class, 'update']);
-    // Route::get('/admin/jadwal/delete/{id}', [JadwalController::class, 'destroy']);
+    // makanan
+    Route::get('/menu-makanan', [MakananController::class, 'index']);
+    Route::post('/menu-makanan', [MakananController::class, 'store']);
+    Route::get('/menu-makanan/{id}', [MakananController::class, 'edit']);
+    Route::post('/menu-makanan/{id}', [MakananController::class, 'update']);
+    Route::get('/menu-makanan/delete/{id}', [MakananController::class, 'destroy']);
 });
 
-Route::group(['middleware' => ['auth', 'Roles:Kantor']], function () {
+Route::group(['middleware' => ['auth', 'Roles:Customer']], function () {
 });
