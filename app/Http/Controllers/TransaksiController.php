@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Makanan;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,11 +20,17 @@ class TransaksiController extends Controller
         return view('catering.transaksi.index', compact('transaksi'));
     }
 
-    public function index()
+    public function indexInvoice()
     {
-        $transaksi = Transaksi::where('kantor_id', Auth::user()->id)->latest()->get();
+        $invoice = Transaksi::where('kantor_id', Auth::user()->id)->latest()->get();
 
-        return view('kantor.transaksi.index', compact('transaksi'));
+        return view('kantor.invoice', compact('invoice'));
+    }
+
+    public function indexPesan($id){
+        $makanan = Makanan::findOrFail($id);
+
+        return view('kantor.pesan', compact('makanan'));
     }
 
 
@@ -48,7 +55,7 @@ class TransaksiController extends Controller
 
         $transaksi->save();
 
-        Alert::success('Sukses', 'Berhasil membuat transaksi, dengan no invoice' . $no_invoice);
+        Alert::success('Sukses', 'Berhasil membuat transaksi, dengan no invoice ' . $no_invoice);
         return redirect('/');
     }
 }

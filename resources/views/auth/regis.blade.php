@@ -47,8 +47,8 @@
                                             labelNamaLengkap.textContent = 'Nama Perusahaan';
                                             document.getElementById('nama_lengkap').placeholder = 'Masukkan Nama Perusahaan';
                                         } else {
-                                            labelNamaLengkap.textContent = 'Nama Lengkap';
-                                            document.getElementById('nama_lengkap').placeholder = 'Masukkan Nama Lengkap';
+                                            labelNamaLengkap.textContent = 'Nama Kantor';
+                                            document.getElementById('nama_lengkap').placeholder = 'Masukkan Nama Kantor';
                                         }
                                     });
                                 </script>

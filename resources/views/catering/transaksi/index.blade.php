@@ -7,31 +7,25 @@
                 <table class="table table-striped" id="myTable">
                     <thead>
                         <tr>
-                            <th>No</th>
+                            <th>No Invoice</th>
                             <th>Nama Pembeli</th>
                             <th>No Wa</th>
-                            <th>Hari</th>
-                            <th>Tanggal Masuk</th>
-                            <th>Jam Masuk</th>
-                            <th>Keterangan</th>
+                            <th>Jumlah Porsi</th>
+                            <th>Tanggal Pengiriman</th>
+                            <th>Total Jumlah</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($dataAbsensiPegawai as $item)
+                        @foreach ($transaksi as $item)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->user->nama_lengkap }}</td>
-                                <td>{{ $item->user->no_wa }}</td>
-                                <td>{{ $item->jadwal->hari }}</td>
-                                <td>{{ $item->jadwal->tanggal }}</td>
-                                <td>{{ $item->jadwal->jam }}</td>
-                                @if ($item->keterangan === 'Hadir')
-                                    <td style="font-weight: 700;" class="text-primary">{{ $item->keterangan }}</td>
-                                @else
-                                    <td style="font-weight: 700;" class="text-danger">{{ $item->keterangan }}</td>
-                                @endif
+                                <td>{{ $item->no_invoice }}</td>
+                                <td>{{ $item->kantor->nama_lengkap }}</td>
+                                <td>{{ $item->kantor->no_wa }}</td>
+                                <td>{{ $item->jumlah_porsi }}</td>
+                                <td>{{ $item->tanggal_pengiriman }}</td>
+                                <td>Rp {{ number_format($item->jumlah_porsi * $item->makanan->harga, 0, ',', '.') }}</td>
                             </tr>
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
             </div>

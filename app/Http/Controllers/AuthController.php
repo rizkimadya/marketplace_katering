@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Makanan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +12,12 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthController extends Controller
 {
+
+    public function landing_page(){
+        $makanan = Makanan::latest()->take(6)->get();
+        return view('landing_page', compact('makanan'));
+    }
+
     public function login()
     {
         return view('auth.login');

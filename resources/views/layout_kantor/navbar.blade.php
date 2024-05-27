@@ -9,9 +9,11 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">All Menu</a></li>
-                <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Catering</a></li>
-                <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Invoice</a></li>
+                @if (auth()->user() !== null)
+                    <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Invoice</a></li>
+                @else
+                    <li class="nav-item"><a href="#menu" class="nav-link">Menu</a></li>
+                @endif
                 @if ($title === 'Login')
                     <li class="nav-item"><a href="{{ url('/regis') }}" class="nav-link btn btn-primary">Registrasi</a>
                     </li>

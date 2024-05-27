@@ -18,9 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('landing_page');
-});
+Route::get('/', [AuthController::class, 'landing_page']);
 
 
 // authentication
@@ -48,4 +46,6 @@ Route::group(['middleware' => ['auth', 'Roles:Catering']], function () {
 });
 
 Route::group(['middleware' => ['auth', 'Roles:Customer']], function () {
+    Route::get('/pesan/{id}', [TransaksiController::class, 'indexPesan']);
+    Route::post('/pesan', [TransaksiController::class, 'store']);
 });
