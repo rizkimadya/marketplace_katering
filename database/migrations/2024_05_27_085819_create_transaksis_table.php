@@ -13,7 +13,17 @@ return new class extends Migration
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
+            $table->string('no_invoice');
+            $table->unsignedBigInteger('kantor_id');
+            $table->unsignedBigInteger('catering_id');
+            $table->unsignedBigInteger('makanan_id');
+            $table->string('jumlah_porsi');
+            $table->string('tanggal_pengiriman');
             $table->timestamps();
+
+            $table->foreign('kantor_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('catering_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('makanan_id')->references('id')->on('makanans')->onDelete('cascade');
         });
     }
 

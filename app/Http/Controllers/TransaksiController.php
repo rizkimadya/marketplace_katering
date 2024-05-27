@@ -4,62 +4,51 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TransaksiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    public function indexCatering()
+    {
+        $transaksi = Transaksi::where('catering_id', Auth::user()->id)->latest()->get();
+
+        return view('catering.transaksi.index', compact('transaksi'));
+    }
+
     public function index()
     {
-        //
+        $transaksi = Transaksi::where('kantor_id', Auth::user()->id)->latest()->get();
+
+        return view('kantor.transaksi.index', compact('transaksi'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
-    }
+        $validatedData = $request->validate([
+            'kantor_id' => 'required',
+            'catering_id' => 'required',
+            'makanan_id' => 'required',
+            'jumlah_porsi' => 'required|integer',
+            'tanggal_pengiriman' => 'required|date',
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Transaksi $transaksi)
-    {
-        //
-    }
+        $no_invoice = 'INV-' . uniqid();
+        $transaksi = new Transaksi();
+        $transaksi->no_invoice = $no_invoice;
+        $transaksi->kantor_id = $validatedData['kantor_id'];
+        $transaksi->catering_id = $validatedData['catering_id'];
+        $transaksi->makanan_id = $validatedData['makanan_id'];
+        $transaksi->jumlah_porsi = $validatedData['jumlah_porsi'];
+        $transaksi->tanggal_pengiriman = $validatedData['tanggal_pengiriman'];
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Transaksi $transaksi)
-    {
-        //
-    }
+        $transaksi->save();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Transaksi $transaksi)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Transaksi $transaksi)
-    {
-        //
+        Alert::success('Sukses', 'Berhasil membuat transaksi, dengan no invoice' . $no_invoice);
+        return redirect('/');
     }
 }

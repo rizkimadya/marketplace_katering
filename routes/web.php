@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CateringController;
 use App\Http\Controllers\MakananController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,6 +42,9 @@ Route::group(['middleware' => ['auth', 'Roles:Catering']], function () {
     Route::get('/menu-makanan/{id}', [MakananController::class, 'edit']);
     Route::post('/menu-makanan/{id}', [MakananController::class, 'update']);
     Route::get('/menu-makanan/delete/{id}', [MakananController::class, 'destroy']);
+
+    // data transaksi
+    Route::get('/data-transaksi', [TransaksiController::class, 'indexCatering']);
 });
 
 Route::group(['middleware' => ['auth', 'Roles:Customer']], function () {
