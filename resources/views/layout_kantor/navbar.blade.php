@@ -10,7 +10,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
                 @if (auth()->user() !== null)
-                    <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Invoice</a></li>
+                    <li class="nav-item"><a href="{{ url('/invoice') }}" class="nav-link">Invoice</a></li>
                 @else
                     <li class="nav-item"><a href="#menu" class="nav-link">Menu</a></li>
                 @endif

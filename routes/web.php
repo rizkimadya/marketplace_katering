@@ -48,4 +48,6 @@ Route::group(['middleware' => ['auth', 'Roles:Catering']], function () {
 Route::group(['middleware' => ['auth', 'Roles:Customer']], function () {
     Route::get('/pesan/{id}', [TransaksiController::class, 'indexPesan']);
     Route::post('/pesan', [TransaksiController::class, 'store']);
+
+    Route::get('/invoice', [TransaksiController::class, 'indexInvoice']);
 });
